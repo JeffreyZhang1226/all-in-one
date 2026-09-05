@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALLINONE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;600&family=Noto+Sans+JP:wght@400;600&family=Noto+Sans+SC:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0f;
+      --card: #12121a;
+      --accent1: #00f5d4;
+      --accent2: #7b2cbf;
+      --accent3: #ff006e;
+      --text: #e8e8f0;
+      --muted: #8b8b9e;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', system-ui, sans-serif;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(0, 245, 212, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(123, 44, 191, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 30% at 50% 90%, rgba(255, 0, 110, 0.08) 0%, transparent 50%);
+    }
+
+    .grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    /* Language switcher */
+    .lang-switcher {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      gap: 0.4rem;
+      z-index: 10;
+      background: rgba(18, 18, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 0.3rem;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 0.02em;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #0a0a0f;
+      box-shadow: 0 2px 12px rgba(0, 245, 212, 0.25);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 7vw, 3.8rem);
+      letter-spacing: 0.12em;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 40px rgba(0, 245, 212, 0.3);
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 3.5rem;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s ease;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      width: 100%;
+      max-width: 380px;
+      padding: 1.15rem 2rem;
+      border: none;
+      border-radius: 16px;
+      font-family: 'Orbitron', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: #0a0a0f;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn.protein::before {
+      background: linear-gradient(135deg, #00f5d4, #00b4d8);
+    }
+
+    .btn.room::before {
+      background: linear-gradient(135deg, #7b2cbf, #c77dff);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 
+        0 12px 40px rgba(0, 245, 212, 0.25),
+        0 0 0 1px rgba(255,255,255,0.1);
+    }
+
+    .btn.room:hover {
+      box-shadow: 
+        0 12px 40px rgba(123, 44, 191, 0.35),
+        0 0 0 1px rgba(255,255,255,0.1);
+    }
+
+    .btn:hover::after {
+      transform: translateX(100%);
+    }
+
+    .btn:active {
+      transform: translateY(-1px) scale(0.99);
+    }
+
+    .icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .footer {
+      margin-top: 3.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      z-index: 0;
+      pointer-events: none;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .orb1 {
+      width: 280px;
+      height: 280px;
+      background: var(--accent1);
+      top: -80px;
+      left: -60px;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 220px;
+      height: 220px;
+      background: var(--accent2);
+      bottom: -40px;
+      right: -40px;
+      animation-delay: -4s;
+    }
+
+    .orb3 {
+      width: 160px;
+      height: 160px;
+      background: var(--accent3);
+      top: 40%;
+      right: 10%;
+      animation-delay: -8s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 15px) scale(0.95); }
+    }
+
+    @media (min-width: 540px) {
+      .buttons {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        max-width: 280px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .lang-switcher {
+        top: 0.75rem;
+        right: 0.75rem;
+      }
+      .lang-btn {
+        padding: 0.35rem 0.55rem;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- Language Switcher -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">JP</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中文</button>
+  </div>
+
+  <div class="container">
+    <h1 class="logo" id="logo">ALLINONE</h1>
+    <p class="tagline" id="tagline">Management Hub</p>
+
+    <div class="buttons">
+      <a href="https://protein-man.vercel.app" class="btn protein" target="_blank" rel="noopener noreferrer">
+        <span class="icon">💪</span>
+        <span id="btn-protein">Protein Management</span>
+      </a>
+      <a href="https://room-man.vercel.app" class="btn room" target="_blank" rel="noopener noreferrer">
+        <span class="icon">🏠</span>
+        <span id="btn-room">Room Management</span>
+      </a>
+    </div>
+
+    <p class="footer" id="footer">All-in-one · Open in new tab</p>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        logo: "ALLINONE",
+        tagline: "Management Hub",
+        protein: "Protein Management",
+        room: "Room Management",
+        footer: "All-in-one · Open in new tab",
+        title: "ALLINONE"
+      },
+      ja: {
+        logo: "ALLINONE",
+        tagline: "マネジメント・ハブ",
+        protein: "プロテイン管理",
+        room: "ルーム管理",
+        footer: "オールインワン · 新しいタブで開く",
+        title: "ALLINONE"
+      },
+      zh: {
+        logo: "ALLINONE",
+        tagline: "管理中心",
+        protein: "蛋白质管理",
+        room: "房间管理",
+        footer: "一体式 · 在新标签页中打开",
+        title: "ALLINONE"
+      }
+    };
+
+    function setLang(lang) {
+      const t = translations[lang];
+      if (!t) return;
+
+      document.getElementById('logo').textContent = t.logo;
+      document.getElementById('tagline').textContent = t.tagline;
+      document.getElementById('btn-protein').textContent = t.protein;
+      document.getElementById('btn-room').textContent = t.room;
+      document.getElementById('footer').textContent = t.footer;
+      document.title = t.title;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      localStorage.setItem('man-portal-lang', lang);
+    }
+
+    (function init() {
+      const saved = localStorage.getItem('man-portal-lang');
+      if (saved && translations[saved]) {
+        setLang(saved);
+        return;
+      }
+
+      const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      if (browserLang.startsWith('ja')) {
+        setLang('ja');
+      } else if (browserLang.startsWith('zh')) {
+        setLang('zh');
+      } else {
+        setLang('en');
+      }
+    })();
+  </script>
+</body>
+</html>
