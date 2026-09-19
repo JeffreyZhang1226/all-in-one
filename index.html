@@ -37,11 +37,12 @@
     .app::before { position: absolute; inset: 0; z-index: -1; content: ""; background: linear-gradient(160deg, rgba(8,19,19,.16), rgba(8,19,19,.9)); transition: opacity .25s ease; }
     .app:hover { border-color: var(--ink); box-shadow: 8px 8px 0 rgba(245,241,232,.85); transform: translate(-3px,-4px); }
     .app:hover::before { opacity: .72; }
-    .app:nth-child(2) { animation-delay: .08s; } .app:nth-child(3) { animation-delay: .16s; } .app:nth-child(4) { animation-delay: .24s; }
+    .app:nth-child(2) { animation-delay: .08s; } .app:nth-child(3) { animation-delay: .16s; } .app:nth-child(4) { animation-delay: .24s; } .app:nth-child(5) { animation-delay: .32s; }
     .app.protein { background-image: url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85"); }
     .app.room { background-image: url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=85"); }
     .app.find { background-image: url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85"); }
     .app.kintai { background-image: url("https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=1000&q=85"); }
+    .app.together { background-image: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=85"); }
     .app-top, .app-bottom { display: flex; justify-content: space-between; gap: 15px; }
     .app-index { color: rgba(245,241,232,.72); font: .7rem "DM Mono", monospace; }
     .arrow { font-size: 1.35rem; line-height: 1; transition: transform .25s ease; }
@@ -65,28 +66,110 @@
       <nav class="lang-switcher" aria-label="Language selector"><button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ja" onclick="setLang('ja')">JP</button><button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中文</button></nav>
     </header>
     <section class="hero" aria-labelledby="page-title"><div><p class="eyebrow" id="eyebrow">Personal operating system / 01</p><h1 id="page-title">One place.<br /><span>Many moves.</span></h1></div><p class="intro" id="intro">A focused launchpad for the tools that keep your work, spaces, health, and daily rhythm moving. <strong>Choose a destination.</strong></p></section>
-    <section aria-labelledby="apps-title"><div class="section-head"><h2 id="apps-title">Your apps</h2><p id="app-count">04 destinations</p></div><div class="apps">
+    <section aria-labelledby="apps-title"><div class="section-head"><h2 id="apps-title">Your apps</h2><p id="app-count">05 destinations</p></div><div class="apps">
       <a class="app protein" href="https://protein-man.vercel.app" target="_blank" rel="noopener noreferrer"><div class="app-top"><span class="app-index">01 / HEALTH</span><span class="arrow">↗</span></div><div class="app-bottom"><div><span class="app-icon">✚</span><h3 id="btn-protein">Protein Man</h3><p id="desc-protein">Track your nutrition stack</p></div></div></a>
       <a class="app room" href="https://room-man.vercel.app" target="_blank" rel="noopener noreferrer"><div class="app-top"><span class="app-index">02 / SPACE</span><span class="arrow">↗</span></div><div class="app-bottom"><div><span class="app-icon">⌂</span><h3 id="btn-room">Room Man</h3><p id="desc-room">Manage your spaces</p></div></div></a>
       <a class="app find" href="https://findmatchnavi.vercel.app/" target="_blank" rel="noopener noreferrer"><div class="app-top"><span class="app-index">03 / DISCOVERY</span><span class="arrow">↗</span></div><div class="app-bottom"><div><span class="app-icon">⌕</span><h3 id="btn-find">FindMatchNavi</h3><p id="desc-find">Find the right connection</p></div></div></a>
       <a class="app kintai" href="https://kintaiman.vercel.app" target="_blank" rel="noopener noreferrer"><div class="app-top"><span class="app-index">04 / RHYTHM</span><span class="arrow">↗</span></div><div class="app-bottom"><div><span class="app-icon">◷</span><h3 id="btn-kintai">Kintai Man</h3><p id="desc-kintai">Keep time on your side</p></div></div></a>
+      <a class="app together" href="https://together-man.vercel.app/" target="_blank" rel="noopener noreferrer"><div class="app-top"><span class="app-index">05 / TOGETHER</span><span class="arrow">↗</span></div><div class="app-bottom"><div><span class="app-icon">◎</span><h3 id="btn-together">Together Man</h3><p id="desc-together">Collaborate and connect</p></div></div></a>
     </div></section>
     <footer><span>ALLINONE / <span id="footer-label">DIGITAL DESK</span></span><span id="footer-action">Open a tool to begin ↗</span></footer>
   </main>
   <script>
     const translations = {
-      en: { eyebrow: "Personal operating system / 01", title: "One place.<br><span>Many moves.</span>", intro: "A focused launchpad for the tools that keep your work, spaces, health, and daily rhythm moving. <strong>Choose a destination.</strong>", apps: "Your apps", count: "04 destinations", status: "systems online", protein: "Protein Man", proteinDesc: "Track your nutrition stack", room: "Room Man", roomDesc: "Manage your spaces", find: "FindMatchNavi", findDesc: "Find the right connection", kintai: "Kintai Man", kintaiDesc: "Keep time on your side", footer: "DIGITAL DESK", action: "Open a tool to begin ↗", titleText: "ALLINONE | Management Hub" },
-      ja: { eyebrow: "パーソナル・オペレーティング・システム / 01", title: "ひとつの場所。<br><span>広がる毎日。</span>", intro: "仕事、空間、健康、日々のリズムを支えるツールをひとつに。<strong>行き先を選んでください。</strong>", apps: "アプリ一覧", count: "04 destinations", status: "システム稼働中", protein: "プロテイン管理", proteinDesc: "栄養をスマートに管理", room: "ルーム管理", roomDesc: "空間を整える", find: "FindMatchNavi", findDesc: "ぴったりのつながりを探す", kintai: "勤怠管理", kintaiDesc: "時間を味方につける", footer: "デジタルデスク", action: "ツールを開く ↗", titleText: "ALLINONE | 管理ハブ" },
-      zh: { eyebrow: "个人操作系统 / 01", title: "一个地方。<br><span>无限可能。</span>", intro: "将工作、空间、健康和日常节奏所需的工具集中在一起。<strong>选择一个目的地。</strong>", apps: "应用程序", count: "04 个目的地", status: "系统在线", protein: "蛋白质管理", proteinDesc: "记录你的营养计划", room: "房间管理", roomDesc: "管理你的空间", find: "FindMatchNavi", findDesc: "寻找合适的连接", kintai: "考勤管理", kintaiDesc: "掌控你的时间", footer: "数字桌面", action: "打开工具 ↗", titleText: "ALLINONE | 管理中心" }
+      en: {
+        eyebrow: "Personal operating system / 01",
+        title: "One place.<br><span>Many moves.</span>",
+        intro: "A focused launchpad for the tools that keep your work, spaces, health, and daily rhythm moving. <strong>Choose a destination.</strong>",
+        apps: "Your apps",
+        count: "05 destinations",
+        status: "systems online",
+        protein: "Protein Man",
+        proteinDesc: "Track your nutrition stack",
+        room: "Room Man",
+        roomDesc: "Manage your spaces",
+        find: "FindMatchNavi",
+        findDesc: "Find the right connection",
+        kintai: "Kintai Man",
+        kintaiDesc: "Keep time on your side",
+        together: "Together Man",
+        togetherDesc: "Collaborate and connect",
+        footer: "DIGITAL DESK",
+        action: "Open a tool to begin ↗",
+        titleText: "ALLINONE | Management Hub"
+      },
+      ja: {
+        eyebrow: "パーソナル・オペレーティング・システム / 01",
+        title: "ひとつの場所。<br><span>広がる毎日。</span>",
+        intro: "仕事、空間、健康、日々のリズムを支えるツールをひとつに。<strong>行き先を選んでください。</strong>",
+        apps: "アプリ一覧",
+        count: "05 destinations",
+        status: "システム稼働中",
+        protein: "プロテイン管理",
+        proteinDesc: "栄養をスマートに管理",
+        room: "ルーム管理",
+        roomDesc: "空間を整える",
+        find: "FindMatchNavi",
+        findDesc: "ぴったりのつながりを探す",
+        kintai: "勤怠管理",
+        kintaiDesc: "時間を味方につける",
+        together: "Together管理",
+        togetherDesc: "つながりを築く",
+        footer: "デジタルデスク",
+        action: "ツールを開く ↗",
+        titleText: "ALLINONE | 管理ハブ"
+      },
+      zh: {
+        eyebrow: "个人操作系统 / 01",
+        title: "一个地方。<br><span>无限可能。</span>",
+        intro: "将工作、空间、健康和日常节奏所需的工具集中在一起。<strong>选择一个目的地。</strong>",
+        apps: "应用程序",
+        count: "05 个目的地",
+        status: "系统在线",
+        protein: "蛋白质管理",
+        proteinDesc: "记录你的营养计划",
+        room: "房间管理",
+        roomDesc: "管理你的空间",
+        find: "FindMatchNavi",
+        findDesc: "寻找合适的连接",
+        kintai: "考勤管理",
+        kintaiDesc: "掌控你的时间",
+        together: "Together管理",
+        togetherDesc: "协作与连接",
+        footer: "数字桌面",
+        action: "打开工具 ↗",
+        titleText: "ALLINONE | 管理中心"
+      }
     };
     function setLang(lang) {
       const t = translations[lang];
       if (!t) return;
-      document.getElementById('eyebrow').textContent = t.eyebrow; document.getElementById('page-title').innerHTML = t.title; document.getElementById('intro').innerHTML = t.intro; document.getElementById('apps-title').textContent = t.apps; document.getElementById('app-count').textContent = t.count; document.getElementById('status').textContent = t.status;
-      document.getElementById('btn-protein').textContent = t.protein; document.getElementById('desc-protein').textContent = t.proteinDesc; document.getElementById('btn-room').textContent = t.room; document.getElementById('desc-room').textContent = t.roomDesc; document.getElementById('btn-find').textContent = t.find; document.getElementById('desc-find').textContent = t.findDesc; document.getElementById('btn-kintai').textContent = t.kintai; document.getElementById('desc-kintai').textContent = t.kintaiDesc; document.getElementById('footer-label').textContent = t.footer; document.getElementById('footer-action').textContent = t.action; document.title = t.titleText;
-      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang; document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang)); localStorage.setItem('man-portal-lang', lang);
+      document.getElementById('eyebrow').textContent = t.eyebrow;
+      document.getElementById('page-title').innerHTML = t.title;
+      document.getElementById('intro').innerHTML = t.intro;
+      document.getElementById('apps-title').textContent = t.apps;
+      document.getElementById('app-count').textContent = t.count;
+      document.getElementById('status').textContent = t.status;
+      document.getElementById('btn-protein').textContent = t.protein;
+      document.getElementById('desc-protein').textContent = t.proteinDesc;
+      document.getElementById('btn-room').textContent = t.room;
+      document.getElementById('desc-room').textContent = t.roomDesc;
+      document.getElementById('btn-find').textContent = t.find;
+      document.getElementById('desc-find').textContent = t.findDesc;
+      document.getElementById('btn-kintai').textContent = t.kintai;
+      document.getElementById('desc-kintai').textContent = t.kintaiDesc;
+      document.getElementById('btn-together').textContent = t.together;
+      document.getElementById('desc-together').textContent = t.togetherDesc;
+      document.getElementById('footer-label').textContent = t.footer;
+      document.getElementById('footer-action').textContent = t.action;
+      document.title = t.titleText;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+      localStorage.setItem('man-portal-lang', lang);
     }
-    const saved = localStorage.getItem('man-portal-lang'); const browserLang = (navigator.language || '').toLowerCase(); setLang(saved && translations[saved] ? saved : browserLang.startsWith('ja') ? 'ja' : browserLang.startsWith('zh') ? 'zh' : 'en');
+    const saved = localStorage.getItem('man-portal-lang');
+    const browserLang = (navigator.language || '').toLowerCase();
+    setLang(saved && translations[saved] ? saved : browserLang.startsWith('ja') ? 'ja' : browserLang.startsWith('zh') ? 'zh' : 'en');
   </script>
 </body>
 </html>
